@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Calorie Calculator" Height="600" Width="400">
     <Grid>
+
         <!-- Makron sektion -->
         <Grid Margin="10" VerticalAlignment="Top" Height="100">
             <Grid.ColumnDefinitions>
