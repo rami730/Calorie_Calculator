@@ -1,19 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using Calorie_Calculator;
+
 
 namespace Calorie_Calculator
 {
     public partial class SearchFile : Window
     {
-        // Mock-data för matprodukter
-        private List<FoodItem> FoodItems = new List<FoodItem>
-        {
-            new FoodItem { Name = "Äpple", Calories = 52, Protein = 0.3, Carbs = 14, Fat = 0.2 },
-            new FoodItem { Name = "Kyckling", Calories = 239, Protein = 27, Carbs = 0, Fat = 14 },
-            new FoodItem { Name = "Bröd", Calories = 265, Protein = 9, Carbs = 49, Fat = 3.2 },
-        };
-
         public SearchFile()
         {
             InitializeComponent();
@@ -38,14 +32,5 @@ namespace Calorie_Calculator
             // Avbryt och stäng fönstret
             this.Close();
         }
-    }
-
-    public class FoodItem
-    {
-        public string Name { get; set; }
-        public int Calories { get; set; }
-        public double Protein { get; set; }
-        public double Carbs { get; set; }
-        public double Fat { get; set; }
     }
 }
