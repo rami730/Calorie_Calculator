@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calorie_Calculator.Classes
+namespace Calorie_Calculator
 {
 	internal class FoodDatabase
 	{

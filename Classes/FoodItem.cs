@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calorie_Calculator.Classes
+namespace Calorie_Calculator
 {
 	internal class FoodItem
 	{

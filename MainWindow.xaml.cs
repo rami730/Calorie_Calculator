@@ -1,4 +1,4 @@
-﻿using Calorie_Calculator.Classes;
+﻿using Calorie_Calculator;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
@@ -21,8 +21,21 @@ namespace Calorie_Calculator
         public MainWindow()
         {
             InitializeComponent();
+			FoodDatabase.Initialize();
+			FoodDatabase.Insert("Chicken", 100, 60, 21, 11);
+			FoodDatabase.Insert("Chiicken", 100, 60, 21, 11);
+			FoodDatabase.Insert("Chiiicken", 100, 60, 21, 11);
 
-        }
+			//List<FoodItem> foodsToSelect = new List<FoodItem>();
+			//foodsToSelect = FoodDatabase.Select("D");
+			List<FoodItem> foodsToSelect = new List<FoodItem>();
+			foodsToSelect = FoodDatabase.Select("D");
+			//FoodDatabase.Delete("Chicken");
+			foreach (var item in foodsToSelect)
+			{
+				Debug.WriteLine(item);
+			}
+		}
         private void AddCalories_Click(object sender, RoutedEventArgs e)
         {
             // Lägger till kalorier, exempelvis 200
@@ -36,20 +49,5 @@ namespace Calorie_Calculator
                 MessageBox.Show("Du har nått ditt kalorimål för dagen!");
             }
         }
-    }
-
-            FoodDatabase.Initialize();
-			FoodDatabase.Insert("Chicken", 100, 60, 21, 11);
-			FoodDatabase.Insert("Chiicken", 100, 60, 21, 11);
-			FoodDatabase.Insert("Chiiicken", 100, 60, 21, 11);
-
-			List<FoodItem> foodsToSelect = new List<FoodItem>();
-			foodsToSelect = FoodDatabase.Select("D");
-			//FoodDatabase.Delete("Chicken");
-			foreach (var item in foodsToSelect)
-			{
-				Debug.WriteLine(item);
-			}
-		}
 	}
 }
