@@ -21,6 +21,23 @@ namespace Calorie_Calculator
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+        private void AddCalories_Click(object sender, RoutedEventArgs e)
+        {
+            // Lägger till kalorier, exempelvis 200
+            double addedCalories = 200;
+            if (CalorieProgressBar.Value + addedCalories <= CalorieProgressBar.Maximum)
+            {
+                CalorieProgressBar.Value += addedCalories;
+            }
+            else
+            {
+                MessageBox.Show("Du har nått ditt kalorimål för dagen!");
+            }
+        }
+    }
+
             FoodDatabase.Initialize();
 			FoodDatabase.Insert("Chicken", 100, 60, 21, 11);
 			FoodDatabase.Insert("Chiicken", 100, 60, 21, 11);
