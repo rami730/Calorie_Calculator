@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 
 namespace Calorie_Calculator
@@ -6,11 +7,12 @@ namespace Calorie_Calculator
     public partial class SearchFile : Window
     {
         public FoodItem SelectedFood { get; private set; } // För att returnera vald maträtt
-
-        public SearchFile()
+        private MainWindow mainWindow;
+        public SearchFile(MainWindow _mainWindow)
         {
             InitializeComponent();
             LoadAllFoodItems();
+            mainWindow = _mainWindow;
         }
 
         private void LoadAllFoodItems()
@@ -80,5 +82,33 @@ namespace Calorie_Calculator
         {
             this.Close();
         }
-    }
+
+		private void AddButton_Click(object sender, RoutedEventArgs e)
+		{
+            if (FoodDataGrid.SelectedItem != null)
+            {
+				FoodItem selectedFood = FoodDataGrid.SelectedItem as FoodItem;
+
+                mainWindow.proteinButton.Content = Convert.ToInt32(mainWindow.proteinButton.Content) + selectedFood.Protein;
+				mainWindow.carbonHydratesButton.Content = Convert.ToInt32(mainWindow.carbonHydratesButton.Content) + selectedFood.Carbohydrates;
+				mainWindow.fatButton.Content = Convert.ToInt32(mainWindow.fatButton.Content) + selectedFood.Fat;
+			}
+		}
+
+		private void RemoveButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (FoodDataGrid.SelectedItem != null)
+			{
+				FoodItem selectedFood = FoodDataGrid.SelectedItem as FoodItem;
+
+				//Check that nutrients are not giving negative values
+				if (selectedFood.Protein <= Convert.ToInt32(mainWindow.proteinButton.Content))
+                {
+                    mainWindow.proteinButton.Content = Convert.ToInt32(mainWindow.proteinButton.Content) - selectedFood.Protein;
+                    mainWindow.carbonHydratesButton.Content = Convert.ToInt32(mainWindow.carbonHydratesButton.Content) - selectedFood.Carbohydrates;
+                    mainWindow.fatButton.Content = Convert.ToInt32(mainWindow.fatButton.Content) - selectedFood.Fat;
+                }
+			}
+		}
+	}
 }

@@ -11,9 +11,13 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Protein" Width="80" Height="80" HorizontalAlignment="Center" Background="LightBlue"/>
-            <Button Grid.Column="1" Content="Kolhydrater" Width="80" Height="80" HorizontalAlignment="Center" Background="LightBlue"/>
-            <Button Grid.Column="2" Content="Fett" Width="80" Height="80" HorizontalAlignment="Center" Background="LightBlue"/>
+            <Label Grid.Column="0" Content="Protein" FontSize="16" HorizontalContentAlignment="Center"/>
+            <Label Grid.Column="1" Content="Kolhydrater" FontSize="16" HorizontalContentAlignment="Center"/>
+            <Label Grid.Column="2" Content="Fett" FontSize="16" HorizontalContentAlignment="Center"/>
+            
+            <Button x:Name="proteinButton" Grid.Column="0" Content="0" Width="80" Height="40" HorizontalAlignment="Center" Background="LightBlue"/>
+            <Button x:Name="carbonHydratesButton" Grid.Column="1" Content="0" Width="80" Height="40" HorizontalAlignment="Center" Background="LightBlue"/>
+            <Button x:Name="fatButton" Grid.Column="2" Content="0" Width="80" Height="40" HorizontalAlignment="Center" Background="LightBlue"/>
         </Grid>
 
         <!-- Kaloribar och kalorimål -->

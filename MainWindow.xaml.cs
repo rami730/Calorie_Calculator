@@ -76,7 +76,7 @@ namespace Calorie_Calculator
         private void AddMeal(string mealType)
         {
             // Öppna SearchFile för att lägga till måltid
-            var searchWindow = new SearchFile();
+            var searchWindow = new SearchFile(this);
             searchWindow.ShowDialog();
 
             if (searchWindow.SelectedFood != null)
