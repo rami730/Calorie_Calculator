@@ -26,8 +26,15 @@ namespace Calorie_Calculator
             {
                 DailyCalorieGoal = newGoal;
                 CalorieProgressBar.Maximum = DailyCalorieGoal;
+                calorineGoalTextBlock.Text = "Kalorimål: " + DailyCalorieGoal;
                 MessageBox.Show($"Ditt dagliga kalorimål är nu {DailyCalorieGoal} kcal.");
-            }
+
+                proteinButton.Content = 0;
+				carbonHydratesButton.Content = 0;
+				fatButton.Content = 0;
+                calorieProgress.Text = "Kalorier: 0";
+                CalorieProgressBar.Value = 0;
+			}
             else
             {
                 MessageBox.Show("Ogiltigt värde. Försök igen.");
@@ -76,7 +83,7 @@ namespace Calorie_Calculator
         private void AddMeal(string mealType)
         {
             // Öppna SearchFile för att lägga till måltid
-            var searchWindow = new SearchFile();
+            var searchWindow = new SearchFile(this);
             searchWindow.ShowDialog();
 
             if (searchWindow.SelectedFood != null)
