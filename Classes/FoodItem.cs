@@ -1,31 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Calorie_Calculator
+﻿/*namespace Calorie_Calculator
 {
-	internal class FoodItem
-	{
-		string food;
-		int calories;
-		int protein;
-		int carbonhydrates;
-		int fat;
+    public class FoodItem
+    {
+        public string Food { get; set; } // Namnet på maträtten
+        public int Calories { get; set; } // Antal kalorier
+        public int Protein { get; set; } // Protein i gram
+        public int Carbohydrates { get; set; } // Kolhydrater i gram
+        public int Fat { get; set; } // Fett i gram
 
-		public FoodItem(string food, int calories, int protein, int carbonhydrates, int fat)
-		{
-			this.food = food;
-			this.calories = calories;
-			this.protein = protein;
-			this.carbonhydrates = carbonhydrates;
-			this.fat = fat;	
-		}
+        // Konstruktor för att skapa ett FoodItem-objekt
+        public FoodItem(string food, int calories, int protein, int carbohydrates, int fat)
+        {
+            Food = food;
+            Calories = calories;
+            Protein = protein;
+            Carbohydrates = carbohydrates;
+            Fat = fat;
+        }
 
-		public override string ToString()
-		{
-			return food;
-		}
-	}
+        // Överskrider ToString för att ge en beskrivning av FoodItem
+        public override string ToString()
+        {
+            return $"{Food}: {Calories} kcal, {Protein}g protein, {Carbohydrates}g kolhydrater, {Fat}g fett";
+        }
+    }
 }
+*/

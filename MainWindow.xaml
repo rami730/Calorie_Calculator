@@ -16,11 +16,13 @@
             <Button Grid.Column="2" Content="Fett" Width="80" Height="80" HorizontalAlignment="Center" Background="LightBlue"/>
         </Grid>
 
-        <!-- Kaloribar -->
-        <StackPanel Margin="10" VerticalAlignment="Center" Height="150">
+        <!-- Kaloribar och kalorimål -->
+        <StackPanel Margin="10" VerticalAlignment="Center" Height="200">
+            <TextBlock Text="Kalorimål" FontSize="16" TextAlignment="Center" Margin="0,10"/>
+            <Button Content="Sätt Kalorimål" Click="SetCalorieGoal_Click" Width="200" HorizontalAlignment="Center" Margin="0,10"/>
             <TextBlock Text="Kalorier bar" FontSize="16" TextAlignment="Center" Margin="0,10"/>
             <ProgressBar Name="CalorieProgressBar" Height="20" Value="0" Maximum="2000" Margin="0,10"/>
-            <Button Content="Lägg till Kalorier" HorizontalAlignment="Center" Width="150" Click="AddCalories_Click"/>
+            <Button Content="Lägg till Ny Maträtt" Click="AddNewFood_Click" Width="200" HorizontalAlignment="Center" Margin="0,10"/>
         </StackPanel>
 
         <!-- Måltidsknappar -->
@@ -31,10 +33,10 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Frukost" Width="80" Height="80" HorizontalAlignment="Center"/>
-            <Button Grid.Column="1" Content="Lunch" Width="80" Height="80" HorizontalAlignment="Center"/>
-            <Button Grid.Column="2" Content="Mellanmål" Width="80" Height="80" HorizontalAlignment="Center"/>
-            <Button Grid.Column="3" Content="Middag" Width="80" Height="80" HorizontalAlignment="Center"/>
+            <Button Grid.Column="0" Content="Frukost" Width="80" Height="80" HorizontalAlignment="Center" Click="AddBreakfast_Click"/>
+            <Button Grid.Column="1" Content="Lunch" Width="80" Height="80" HorizontalAlignment="Center" Click="AddLunch_Click"/>
+            <Button Grid.Column="2" Content="Mellanmål" Width="80" Height="80" HorizontalAlignment="Center" Click="AddSnack_Click"/>
+            <Button Grid.Column="3" Content="Middag" Width="80" Height="80" HorizontalAlignment="Center" Click="AddDinner_Click"/>
         </Grid>
 
         <!-- Footer med logga -->
