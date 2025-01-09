@@ -1,12 +1,44 @@
 ﻿<Window x:Class="Calorie_Calculator.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Calorie_Calculator"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Calorie Calculator" Height="600" Width="400">
     <Grid>
-        <Button>AAAAAAAAA</Button>
+
+        <!-- Makron sektion -->
+        <Grid Margin="10" VerticalAlignment="Top" Height="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Protein" Width="80" Height="80" HorizontalAlignment="Center" Background="LightBlue"/>
+            <Button Grid.Column="1" Content="Kolhydrater" Width="80" Height="80" HorizontalAlignment="Center" Background="LightBlue"/>
+            <Button Grid.Column="2" Content="Fett" Width="80" Height="80" HorizontalAlignment="Center" Background="LightBlue"/>
+        </Grid>
+
+        <!-- Kaloribar och kalorimål -->
+        <StackPanel Margin="10" VerticalAlignment="Center" Height="200">
+            <TextBlock Text="Kalorimål" FontSize="16" TextAlignment="Center" Margin="0,10"/>
+            <Button Content="Sätt Kalorimål" Click="SetCalorieGoal_Click" Width="200" HorizontalAlignment="Center" Margin="0,10"/>
+            <TextBlock Text="Kalorier bar" FontSize="16" TextAlignment="Center" Margin="0,10"/>
+            <ProgressBar Name="CalorieProgressBar" Height="20" Value="0" Maximum="2000" Margin="0,10"/>
+            <Button Content="Lägg till Ny Maträtt" Click="AddNewFood_Click" Width="200" HorizontalAlignment="Center" Margin="0,10"/>
+        </StackPanel>
+
+        <!-- Måltidsknappar -->
+        <Grid Margin="10" VerticalAlignment="Bottom" Height="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Frukost" Width="80" Height="80" HorizontalAlignment="Center" Click="AddBreakfast_Click"/>
+            <Button Grid.Column="1" Content="Lunch" Width="80" Height="80" HorizontalAlignment="Center" Click="AddLunch_Click"/>
+            <Button Grid.Column="2" Content="Mellanmål" Width="80" Height="80" HorizontalAlignment="Center" Click="AddSnack_Click"/>
+            <Button Grid.Column="3" Content="Middag" Width="80" Height="80" HorizontalAlignment="Center" Click="AddDinner_Click"/>
+        </Grid>
+
+        <!-- Footer med logga -->
     </Grid>
 </Window>

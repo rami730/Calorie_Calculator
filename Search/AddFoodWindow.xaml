@@ -1,0 +1,25 @@
+﻿<Window x:Class="Calorie_Calculator.AddFoodWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lägg till ny maträtt" Height="400" Width="300">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Namn på maträtt:" Margin="0,0,0,5"/>
+            <TextBox x:Name="FoodNameTextBox" Height="25" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Kalorier:" Margin="0,0,0,5"/>
+            <TextBox x:Name="CaloriesTextBox" Height="25" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Protein (g):" Margin="0,0,0,5"/>
+            <TextBox x:Name="ProteinTextBox" Height="25" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Kolhydrater (g):" Margin="0,0,0,5"/>
+            <TextBox x:Name="CarbohydratesTextBox" Height="25" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Fett (g):" Margin="0,0,0,5"/>
+            <TextBox x:Name="FatTextBox" Height="25" Margin="0,0,0,10"/>
+
+            <Button Content="Lägg till" Height="30" Click="AddFoodButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
