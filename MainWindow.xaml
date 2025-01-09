@@ -22,9 +22,9 @@
 
         <!-- Kaloribar och kalorimål -->
         <StackPanel Margin="10" VerticalAlignment="Center" Height="200">
-            <TextBlock Text="Kalorimål" FontSize="16" TextAlignment="Center" Margin="0,10"/>
+            <TextBlock x:Name="calorineGoalTextBlock" Text="Kalorimål: 2000" FontSize="16" TextAlignment="Center" Margin="0,10"/>
             <Button Content="Sätt Kalorimål" Click="SetCalorieGoal_Click" Width="200" HorizontalAlignment="Center" Margin="0,10"/>
-            <TextBlock Text="Kalorier bar" FontSize="16" TextAlignment="Center" Margin="0,10"/>
+            <TextBlock x:Name="calorieProgress" Text="Kalorier: 0" FontSize="16" TextAlignment="Center" Margin="0,10"/>
             <ProgressBar Name="CalorieProgressBar" Height="20" Value="0" Maximum="2000" Margin="0,10"/>
             <Button Content="Lägg till Ny Maträtt" Click="AddNewFood_Click" Width="200" HorizontalAlignment="Center" Margin="0,10"/>
         </StackPanel>

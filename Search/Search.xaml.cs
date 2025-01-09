@@ -85,13 +85,25 @@ namespace Calorie_Calculator
 
 		private void AddButton_Click(object sender, RoutedEventArgs e)
 		{
-            if (FoodDataGrid.SelectedItem != null)
-            {
-				FoodItem selectedFood = FoodDataGrid.SelectedItem as FoodItem;
+			// Sätt dagligt kalorimål
 
-                mainWindow.proteinButton.Content = Convert.ToInt32(mainWindow.proteinButton.Content) + selectedFood.Protein;
-				mainWindow.carbonHydratesButton.Content = Convert.ToInt32(mainWindow.carbonHydratesButton.Content) + selectedFood.Carbohydrates;
-				mainWindow.fatButton.Content = Convert.ToInt32(mainWindow.fatButton.Content) + selectedFood.Fat;
+			if (FoodDataGrid.SelectedItem != null)
+            {
+				var input = Microsoft.VisualBasic.Interaction.InputBox("Ange antalet gram");
+				if (int.TryParse(input, out int grams) && grams > 0)
+				{
+					FoodItem selectedFood = FoodDataGrid.SelectedItem as FoodItem;
+                    double weightMultiplier = grams / 100;
+					mainWindow.proteinButton.Content = Convert.ToInt32(mainWindow.proteinButton.Content) + (selectedFood.Protein* weightMultiplier);
+					mainWindow.carbonHydratesButton.Content = Convert.ToInt32(mainWindow.carbonHydratesButton.Content) + (selectedFood.Carbohydrates * weightMultiplier);
+					mainWindow.fatButton.Content = Convert.ToInt32(mainWindow.fatButton.Content) + (selectedFood.Fat * weightMultiplier);
+					mainWindow.CalorieProgressBar.Value += (selectedFood.Calories * weightMultiplier);
+                    mainWindow.calorieProgress.Text = "Kalorier: " + mainWindow.CalorieProgressBar.Value;
+				}
+				else
+				{
+					MessageBox.Show("Ogiltigt värde. Försök igen.");
+				}
 			}
 		}
 
@@ -100,14 +112,26 @@ namespace Calorie_Calculator
 			if (FoodDataGrid.SelectedItem != null)
 			{
 				FoodItem selectedFood = FoodDataGrid.SelectedItem as FoodItem;
+				var input = Microsoft.VisualBasic.Interaction.InputBox("Ange antalet gram");
 
-				//Check that nutrients are not giving negative values
-				if (selectedFood.Protein <= Convert.ToInt32(mainWindow.proteinButton.Content))
+                if (int.TryParse(input, out int grams) && grams > 0)
                 {
-                    mainWindow.proteinButton.Content = Convert.ToInt32(mainWindow.proteinButton.Content) - selectedFood.Protein;
-                    mainWindow.carbonHydratesButton.Content = Convert.ToInt32(mainWindow.carbonHydratesButton.Content) - selectedFood.Carbohydrates;
-                    mainWindow.fatButton.Content = Convert.ToInt32(mainWindow.fatButton.Content) - selectedFood.Fat;
-                }
+                    double weightMultiplier = grams / 100;
+
+					//Check that nutrients are not giving negative values
+					if (selectedFood.Calories * weightMultiplier <= mainWindow.CalorieProgressBar.Value)
+					{
+						mainWindow.proteinButton.Content = Convert.ToInt32(mainWindow.proteinButton.Content) - (selectedFood.Protein * weightMultiplier);
+						mainWindow.carbonHydratesButton.Content = Convert.ToInt32(mainWindow.carbonHydratesButton.Content) - (selectedFood.Carbohydrates * weightMultiplier);
+						mainWindow.fatButton.Content = Convert.ToInt32(mainWindow.fatButton.Content) - (selectedFood.Fat * weightMultiplier);
+						mainWindow.CalorieProgressBar.Value -= (selectedFood.Calories * weightMultiplier);
+						mainWindow.calorieProgress.Text = "Kalorier: " + mainWindow.CalorieProgressBar.Value;
+					}
+				}
+				else
+				{
+					MessageBox.Show("Ogiltigt värde. Försök igen.");
+				}
 			}
 		}
 	}
