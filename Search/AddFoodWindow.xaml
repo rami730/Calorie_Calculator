@@ -1,25 +1,30 @@
 ﻿<Window x:Class="Calorie_Calculator.AddFoodWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Lägg till ny maträtt" Height="400" Width="300">
+        Title="Lägg till ny maträtt" Height="480" Width="300">
     <Grid>
-        <StackPanel Margin="10">
-            <TextBlock Text="Namn på maträtt:" Margin="0,0,0,5"/>
-            <TextBox x:Name="FoodNameTextBox" Height="25" Margin="0,0,0,10"/>
+        <!-- Header -->
+        <Border Background="#4CAF50" Height="60" VerticalAlignment="Top">
+            <TextBlock Text="Lägg till ny maträtt" FontSize="18" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
 
-            <TextBlock Text="Kalorier:" Margin="0,0,0,5"/>
-            <TextBox x:Name="CaloriesTextBox" Height="25" Margin="0,0,0,10"/>
+        <StackPanel Height="380" Margin="10,80,10,10" VerticalAlignment="Center">
+            <TextBlock Text="Namn på maträtt:" Margin="0,10,0,5" Foreground="#333"/>
+            <TextBox x:Name="foodNameTextBox" Height="30" Margin="0,0,0,10" Background="#F5F5F5"/>
 
-            <TextBlock Text="Protein (g):" Margin="0,0,0,5"/>
-            <TextBox x:Name="ProteinTextBox" Height="25" Margin="0,0,0,10"/>
+            <TextBlock Text="Kalorier:" Margin="0,0,0,5" Foreground="#333"/>
+            <TextBox x:Name="caloriesTextBox" Height="30" Margin="0,0,0,10" Background="#F5F5F5"/>
 
-            <TextBlock Text="Kolhydrater (g):" Margin="0,0,0,5"/>
-            <TextBox x:Name="CarbohydratesTextBox" Height="25" Margin="0,0,0,10"/>
+            <TextBlock Text="Protein (g):" Margin="0,0,0,5" Foreground="#333"/>
+            <TextBox x:Name="proteinTextBox" Height="30" Margin="0,0,0,10" Background="#F5F5F5"/>
 
-            <TextBlock Text="Fett (g):" Margin="0,0,0,5"/>
-            <TextBox x:Name="FatTextBox" Height="25" Margin="0,0,0,10"/>
+            <TextBlock Text="Kolhydrater (g):" Margin="0,0,0,5" Foreground="#333"/>
+            <TextBox x:Name="carbohydratesTextBox" Height="30" Margin="0,0,0,10" Background="#F5F5F5"/>
 
-            <Button Content="Lägg till" Height="30" Click="AddFoodButton_Click"/>
+            <TextBlock Text="Fett (g):" Margin="0,0,0,5" Foreground="#333"/>
+            <TextBox x:Name="fatTextBox" Height="30" Margin="0,0,0,20" Background="#F5F5F5"/>
+
+            <Button Content="Lägg till" Height="40" Width="120" HorizontalAlignment="Center" Background="#4CAF50" Foreground="White" FontWeight="Bold" Click="AddFoodButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

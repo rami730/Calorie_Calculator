@@ -13,18 +13,18 @@ namespace Calorie_Calculator
 
         public static void Initialize()
         {
-            // Create the database file if it doesn't exist
+            //Create the database file if it doesn't exist
             if (!File.Exists(databasePath))
             {
                 SQLiteConnection.CreateFile(databasePath);
             }
 
-            // Connect to the database and create a table
+            //Connect to the database and create a table
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
-                // SQL command to create a table
+                //SQL command to create a table
                 string createTableQuery =
                     @"CREATE TABLE IF NOT EXISTS Foods 
                     (Food TEXT NOT NULL,
@@ -33,7 +33,7 @@ namespace Calorie_Calculator
                     Carbohydrates INTEGER NOT NULL,
                     Fat INTEGER NOT NULL);";
 
-                // Execute the SQL command
+                //Execute the SQL command
                 using (var command = new SQLiteCommand(createTableQuery, connection))
                 {
                     command.ExecuteNonQuery();
@@ -114,27 +114,5 @@ namespace Calorie_Calculator
             return foodList;
         }
     }
-
-    public class FoodItem
-    {
-        public string Food { get; set; }
-        public int Calories { get; set; }
-        public int Protein { get; set; }
-        public int Carbohydrates { get; set; }
-        public int Fat { get; set; }
-
-        public FoodItem(string food, int calories, int protein, int carbohydrates, int fat)
-        {
-            Food = food;
-            Calories = calories;
-            Protein = protein;
-            Carbohydrates = carbohydrates;
-            Fat = fat;
-        }
-
-        public override string ToString()
-        {
-            return $"{Food}: {Calories} kcal, {Protein}g Protein, {Carbohydrates}g Carbs, {Fat}g Fat";
-        }
-    }
 }
+

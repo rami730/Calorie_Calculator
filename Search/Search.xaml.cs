@@ -6,39 +6,25 @@ namespace Calorie_Calculator
 {
     public partial class SearchFile : Window
     {
-        public FoodItem SelectedFood { get; private set; } // För att returnera vald maträtt
+        public FoodItem SelectedFood { get; private set; } //To return the selected food item
         private MainWindow mainWindow;
-        public SearchFile(MainWindow _mainWindow)
+        public SearchFile(MainWindow _mainWindow, string mealType)
         {
             InitializeComponent();
             LoadAllFoodItems();
             mainWindow = _mainWindow;
+            mealTypeText.Text = mealType;
         }
 
         private void LoadAllFoodItems()
         {
-            var allItems = FoodDatabase.Select(""); // Ladda alla maträtter
-            FoodDataGrid.ItemsSource = allItems;
+            var allItems = FoodDatabase.Select(""); //Load all food items
+            foodDataGrid.ItemsSource = allItems;
         }
 
-       /* private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            string query = SearchTextBox.Text.Trim(); // Sökterm från användaren
-            var filteredItems = FoodDatabase.Select(query);
-
-            if (filteredItems.Count > 0)
-            {
-                FoodDataGrid.ItemsSource = filteredItems;
-            }
-            else
-            {
-                MessageBox.Show("Ingen mat hittades. Lägg till ny mat!");
-            }
-        }
-       */
         private void AddNewFoodButton_Click(object sender, RoutedEventArgs e)
         {
-            // Lägg till ny maträtt
+            //Add new food item
             var addFoodWindow = new AddFoodWindow();
             addFoodWindow.ShowDialog();
 
@@ -59,7 +45,7 @@ namespace Calorie_Calculator
 
         private void SelectFoodButton_Click(object sender, RoutedEventArgs e)
         {
-            if (FoodDataGrid.SelectedItem is FoodItem selectedFood)
+            if (foodDataGrid.SelectedItem is FoodItem selectedFood)
             {
                 SelectedFood = selectedFood;
                 this.Close();
@@ -73,20 +59,20 @@ namespace Calorie_Calculator
 
         private void SearchTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            // Visa eller dölj placeholder-text baserat på innehållet i TextBox
-            if (!string.IsNullOrEmpty(SearchTextBox.Text))
+			//Show or hide placeholder text based on the content of the TextBox
+			if (!string.IsNullOrEmpty(searchTextBox.Text))
             {
-                PlaceholderText.Visibility = Visibility.Collapsed; // Göm placeholder-texten
-            }
+                placeholderText.Visibility = Visibility.Collapsed; //Hide placeholder text
+			}
             else
             {
-                PlaceholderText.Visibility = Visibility.Visible; // Visa placeholder-texten
-            }
+                placeholderText.Visibility = Visibility.Visible; //Show placeholder text
+			}
 
-            // Dynamiskt uppdatera sökresultaten
-            string query = SearchTextBox.Text.Trim();
+			//Dynamically update search results
+			string query = searchTextBox.Text.Trim();
             var filteredItems = FoodDatabase.Select(query);
-            FoodDataGrid.ItemsSource = filteredItems;
+            foodDataGrid.ItemsSource = filteredItems;
         }
 
 
@@ -97,20 +83,19 @@ namespace Calorie_Calculator
 
 		private void AddButton_Click(object sender, RoutedEventArgs e)
 		{
-			// Sätt dagligt kalorimål
-
-			if (FoodDataGrid.SelectedItem != null)
+			//Set daily calorie goal
+			if (foodDataGrid.SelectedItem != null)
             {
 				var input = Microsoft.VisualBasic.Interaction.InputBox("Ange antalet gram");
 				if (int.TryParse(input, out int grams) && grams > 0)
 				{
-					FoodItem selectedFood = FoodDataGrid.SelectedItem as FoodItem;
-                    double weightMultiplier = grams / 100;
+					FoodItem selectedFood = foodDataGrid.SelectedItem as FoodItem;
+                    double weightMultiplier = grams / 100.0;
 					mainWindow.proteinButton.Content = Convert.ToInt32(mainWindow.proteinButton.Content) + (selectedFood.Protein* weightMultiplier);
 					mainWindow.carbonHydratesButton.Content = Convert.ToInt32(mainWindow.carbonHydratesButton.Content) + (selectedFood.Carbohydrates * weightMultiplier);
 					mainWindow.fatButton.Content = Convert.ToInt32(mainWindow.fatButton.Content) + (selectedFood.Fat * weightMultiplier);
-					mainWindow.CalorieProgressBar.Value += (selectedFood.Calories * weightMultiplier);
-                    mainWindow.calorieProgress.Text = "Kalorier: " + mainWindow.CalorieProgressBar.Value;
+					mainWindow.calorieProgressBar.Value += (selectedFood.Calories * weightMultiplier);
+                    mainWindow.calorieProgress.Text = "Kalorier: " + mainWindow.calorieProgressBar.Value;
 				}
 				else
 				{
@@ -121,23 +106,23 @@ namespace Calorie_Calculator
 
 		private void RemoveButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (FoodDataGrid.SelectedItem != null)
+			if (foodDataGrid.SelectedItem != null)
 			{
-				FoodItem selectedFood = FoodDataGrid.SelectedItem as FoodItem;
+				FoodItem selectedFood = foodDataGrid.SelectedItem as FoodItem;
 				var input = Microsoft.VisualBasic.Interaction.InputBox("Ange antalet gram");
 
                 if (int.TryParse(input, out int grams) && grams > 0)
                 {
-                    double weightMultiplier = grams / 100;
+                    double weightMultiplier = grams / 100.0;
 
 					//Check that nutrients are not giving negative values
-					if (selectedFood.Calories * weightMultiplier <= mainWindow.CalorieProgressBar.Value)
+					if (selectedFood.Calories * weightMultiplier <= mainWindow.calorieProgressBar.Value)
 					{
 						mainWindow.proteinButton.Content = Convert.ToInt32(mainWindow.proteinButton.Content) - (selectedFood.Protein * weightMultiplier);
 						mainWindow.carbonHydratesButton.Content = Convert.ToInt32(mainWindow.carbonHydratesButton.Content) - (selectedFood.Carbohydrates * weightMultiplier);
 						mainWindow.fatButton.Content = Convert.ToInt32(mainWindow.fatButton.Content) - (selectedFood.Fat * weightMultiplier);
-						mainWindow.CalorieProgressBar.Value -= (selectedFood.Calories * weightMultiplier);
-						mainWindow.calorieProgress.Text = "Kalorier: " + mainWindow.CalorieProgressBar.Value;
+						mainWindow.calorieProgressBar.Value -= (selectedFood.Calories * weightMultiplier);
+						mainWindow.calorieProgress.Text = "Kalorier: " + mainWindow.calorieProgressBar.Value;
 					}
 				}
 				else

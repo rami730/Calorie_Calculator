@@ -6,34 +6,34 @@ namespace Calorie_Calculator
 {
     public partial class MainWindow : Window
     {
-        private int DailyCalorieGoal = 2000; // Standardvärde för kalorimål
+        private int dailyCalorieGoal = 2000;  //Default daily calorie goal
 
-        public MainWindow()
+		public MainWindow()
         {
             InitializeComponent();
-            FoodDatabase.Initialize(); // Initiera databasen
-        }
+            FoodDatabase.Initialize(); //Initialize the databas
+		}
 
         private void SetCalorieGoal_Click(object sender, RoutedEventArgs e)
         {
-            // Sätt dagligt kalorimål
-            var input = Microsoft.VisualBasic.Interaction.InputBox(
+			//Set daily calorie goal
+			var input = Microsoft.VisualBasic.Interaction.InputBox(
                 "Ange ditt dagliga kalorimål:",
                 "Kalorimål",
-                DailyCalorieGoal.ToString());
+                dailyCalorieGoal.ToString());
 
             if (int.TryParse(input, out int newGoal) && newGoal > 0)
             {
-                DailyCalorieGoal = newGoal;
-                CalorieProgressBar.Maximum = DailyCalorieGoal;
-                calorineGoalTextBlock.Text = "Kalorimål: " + DailyCalorieGoal;
-                MessageBox.Show($"Ditt dagliga kalorimål är nu {DailyCalorieGoal} kcal.");
+                dailyCalorieGoal = newGoal;
+                calorieProgressBar.Maximum = dailyCalorieGoal;
+                calorineGoalTextBlock.Text = "Kalorimål: " + dailyCalorieGoal;
+                MessageBox.Show($"Ditt dagliga kalorimål är nu {dailyCalorieGoal} kcal.");
 
                 proteinButton.Content = 0;
 				carbonHydratesButton.Content = 0;
 				fatButton.Content = 0;
                 calorieProgress.Text = "Kalorier: 0";
-                CalorieProgressBar.Value = 0;
+                calorieProgressBar.Value = 0;
 			}
             else
             {
@@ -43,8 +43,8 @@ namespace Calorie_Calculator
 
         private void AddNewFood_Click(object sender, RoutedEventArgs e)
         {
-            // Lägg till ny maträtt
-            var addFoodWindow = new AddFoodWindow();
+			//Add new food item
+			var addFoodWindow = new AddFoodWindow();
             addFoodWindow.ShowDialog();
 
             if (addFoodWindow.NewFoodItem != null)
@@ -82,17 +82,17 @@ namespace Calorie_Calculator
 
         private void AddMeal(string mealType)
         {
-            // Öppna SearchFile för att lägga till måltid
-            var searchWindow = new SearchFile(this);
+			//Open SearchFile to add a meal
+			var searchWindow = new SearchFile(this, mealType);
             searchWindow.ShowDialog();
 
             if (searchWindow.SelectedFood != null)
             {
                 var selectedFood = searchWindow.SelectedFood;
 
-                if (CalorieProgressBar.Value + selectedFood.Calories <= DailyCalorieGoal)
+                if (calorieProgressBar.Value + selectedFood.Calories <= dailyCalorieGoal)
                 {
-                    CalorieProgressBar.Value += selectedFood.Calories;
+                    calorieProgressBar.Value += selectedFood.Calories;
                     MessageBox.Show($"Lagt till {selectedFood.Food} ({selectedFood.Calories} kcal) till {mealType}.");
                 }
                 else

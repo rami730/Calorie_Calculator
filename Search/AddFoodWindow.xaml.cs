@@ -14,14 +14,14 @@ namespace Calorie_Calculator
 
         private void AddFoodButton_Click(object sender, RoutedEventArgs e)
         {
-            // Validera och skapa ny maträtt
-            if (!string.IsNullOrWhiteSpace(FoodNameTextBox.Text) &&
-                int.TryParse(CaloriesTextBox.Text, out int calories) &&
-                int.TryParse(ProteinTextBox.Text, out int protein) &&
-                int.TryParse(CarbohydratesTextBox.Text, out int carbohydrates) &&
-                int.TryParse(FatTextBox.Text, out int fat))
+			//Validate and create a new food item
+			if (!string.IsNullOrWhiteSpace(foodNameTextBox.Text) &&
+                int.TryParse(caloriesTextBox.Text, out int calories) &&
+                int.TryParse(proteinTextBox.Text, out int protein) &&
+                int.TryParse(carbohydratesTextBox.Text, out int carbohydrates) &&
+                int.TryParse(fatTextBox.Text, out int fat))
             {
-                NewFoodItem = new FoodItem(FoodNameTextBox.Text, calories, protein, carbohydrates, fat);
+                NewFoodItem = new FoodItem(foodNameTextBox.Text, calories, protein, carbohydrates, fat);
                 this.Close();
             }
             else
@@ -32,8 +32,8 @@ namespace Calorie_Calculator
 
         public static void SetDailyGoal(int dailyCaloriesGoal)
         {
-            // Funktion för att sätta användarens kalorimål.
-            Debug.WriteLine($"Kalorimål satt till: {dailyCaloriesGoal}");
+			//Method to set the user's calorie goal.
+			Debug.WriteLine($"Kalorimål satt till: {dailyCaloriesGoal}");
         }
     }
 }
