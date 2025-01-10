@@ -21,7 +21,7 @@ namespace Calorie_Calculator
             FoodDataGrid.ItemsSource = allItems;
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+       /* private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string query = SearchTextBox.Text.Trim(); // Sökterm från användaren
             var filteredItems = FoodDatabase.Select(query);
@@ -35,7 +35,7 @@ namespace Calorie_Calculator
                 MessageBox.Show("Ingen mat hittades. Lägg till ny mat!");
             }
         }
-
+       */
         private void AddNewFoodButton_Click(object sender, RoutedEventArgs e)
         {
             // Lägg till ny maträtt
@@ -73,10 +73,22 @@ namespace Calorie_Calculator
 
         private void SearchTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
+            // Visa eller dölj placeholder-text baserat på innehållet i TextBox
+            if (!string.IsNullOrEmpty(SearchTextBox.Text))
+            {
+                PlaceholderText.Visibility = Visibility.Collapsed; // Göm placeholder-texten
+            }
+            else
+            {
+                PlaceholderText.Visibility = Visibility.Visible; // Visa placeholder-texten
+            }
+
+            // Dynamiskt uppdatera sökresultaten
             string query = SearchTextBox.Text.Trim();
             var filteredItems = FoodDatabase.Select(query);
             FoodDataGrid.ItemsSource = filteredItems;
         }
+
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
